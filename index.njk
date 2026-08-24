@@ -1,0 +1,16 @@
+---
+layout: layout.njk
+---
+{%- if collections.posts | length == 0 %}
+<p class="empty">No posts yet.</p>
+{%- endif %}
+<ul class="posts">
+  {%- for post in collections.posts %}
+  <li>
+    <a href="{{ post.url | url }}">
+      {% if post.data.title %}<strong>{{ post.data.title }}</strong>{% else %}{{ post.content | striptags | truncate(120) }}{% endif %}
+    </a>
+    <div class="meta">{{ post.data.date | readableDate }}</div>
+  </li>
+  {%- endfor %}
+</ul>
